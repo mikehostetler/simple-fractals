@@ -136,7 +136,32 @@ Pythagoras.prototype = {
 		
 	},
 	drawBranch: function(width, height){
-		this.ctx.fillRect(0,-height,width,height);
+
+
+
+		// Crude Hexagon
+		this.ctx.save();
+			this.ctx.beginPath();
+				this.ctx.moveTo(0, -height);
+				this.ctx.lineTo(0 + width, -height);
+
+				this.ctx.lineTo(0 + width + (width / 2), -height + (height / 2));
+				this.ctx.lineTo(0 + width, -height + height);
+				this.ctx.lineTo(0, -height + height);
+				this.ctx.lineTo(0 - (width / 2), -height + (height / 2));
+
+				this.ctx.closePath();
+			this.ctx.fill();
+		this.ctx.restore();
+
+		// Circle
+		this.ctx.save();
+			this.ctx.arc(0+(width /2),-height+(width/2),width/2,0,Math.PI*2);
+			this.ctx.stroke();
+		this.ctx.restore();
+
+		// Rectangle
+		this.ctx.strokeRect(0,-height,width,height);
 	},
 	drawBranches: function(current_order){
 		var next_order = current_order+1;
